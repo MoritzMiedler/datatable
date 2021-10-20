@@ -1,15 +1,29 @@
 <template>
-  <hello-world />
+  <div>
+    <span>{{ movies }}</span>
+  </div>
 </template>
 
 <script>
-import HelloWorld from "../components/HelloWorld.vue";
+import axios from "axios";
 
 export default {
-  name: "Home",
+  data() {
+    return {
+      movies: []
+    };
+  },
+  methods: {
+    async getMovies() {
+      const movies = await axios({ method: "GET", url: "http://127.0.0.1:3000/movies" });
 
-  components: {
-    HelloWorld
+      this.movies = movies.data;
+    }
+  },
+  created() {
+    this.getMovies();
   }
 };
 </script>
+
+<style lang="css" scoped></style>

@@ -45,7 +45,9 @@
     "rules": {
       "quotes": "off",
       "comma-dangle": "off",
-      "arrow-parens": "off"
+      "arrow-parens": "off",
+      "space-before-function-paren": "off",
+      "object-shorthand": "off"
     }
   },
   "browserslist": [

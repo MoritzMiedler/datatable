@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span>{{ movies }}</span>
+    <v-data-table :headers="headers" :items="movies" class="elevation-1 black--te"></v-data-table>
   </div>
 </template>
 
@@ -10,14 +10,17 @@ import axios from "axios";
 export default {
   data() {
     return {
-      movies: []
+      movies: [],
+      headers: ["Title", "Director", "Genre", "Year", "Rated", "Plot"]
     };
   },
   methods: {
     async getMovies() {
       const movies = await axios({ method: "GET", url: "http://127.0.0.1:3000/movies" });
 
-      this.movies = movies.data;
+      movies.forEach(el => {
+        this.movies.push(el);
+      });
     }
   },
   created() {
